@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MY CHURCH</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; text-align: center; }
+    header { background: #4b2e83; color: white; padding: 60px 20px; }
+    section { padding: 40px 20px; max-width: 700px; margin: auto; }
+    footer { background: #f2f2f2; padding: 20px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="church-name">MY CHURCH</h1>
+    <p>Welcome to our church family</p>
+  </header>
+
+  <section>
+    <h2>Service Times</h2>
+    <p>Sundays, 9:00 AM</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Phone: 07XX XXX XXX</p>
+  </section>
+
+  <footer>
+    &copy; <span id="year"></span> <span class="church-name">MY CHURCH</span>
+  </footer>
+
+  <script>
+    // ✏️ EDIT YOUR CHURCH NAME HERE (only this line)
+    const CHURCH_NAME = "MY CHURCH";
+
+    document.title = CHURCH_NAME;
+    document.querySelectorAll(".church-name").forEach(function (el) {
+      el.textContent = CHURCH_NAME;
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
