@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New here? | THE MASENO CHURCH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="nh-top">
+    <div class="row">
+      <a class="brand logo-link" href="index.html" style="color:#fff"><span class="logo" id="logo"></span><span id="brand"></span></a>
+      <a href="index.html#dashboard">Home</a>
+    </div>
+  </div>
+
+  <header class="nh-hero">
+    <div class="row">
+      <h1>New here? We saved you a seat.</h1>
+      <p id="welcome"></p>
+      <a class="cta" id="planBtn" href="#plan">Plan your visit</a>
+    </div>
+  </header>
+
+  <main class="page" id="plan">
+    <div class="info-grid" style="margin-top:0">
+      <article class="info">
+        <h3>When to come</h3>
+        <ul class="svc" id="svcList"></ul>
+      </article>
+      <article class="info">
+        <h3>Where we are</h3>
+        <p id="addr"></p>
+        <a class="btn-outline" id="mapBtn" target="_blank" rel="noopener">Open in Google Maps</a>
+      </article>
+      <article class="info">
+        <h3>Before you arrive</h3>
+        <p id="dress"></p>
+        <p id="parking" style="margin-top:8px"></p>
+        <p id="kids" style="margin-top:8px"></p>
+      </article>
+    </div>
+
+    <div class="section-head"><h2>What your first Sunday looks like</h2></div>
+    <ol class="steps" id="flow"></ol>
+
+    <div class="section-head"><h2>Questions first-time visitors ask</h2></div>
+    <div id="faq"></div>
+
+    <div class="section-head"><h2>Let us know you are coming</h2></div>
+    <div class="panel" style="margin-top:0">
+      <p style="margin-top:0">You do not have to, but a quick message lets our welcome team look out for you.</p>
+      <div class="actions" id="contactActions"></div>
+    </div>
+  </main>
+
+  <footer class="site-foot">&copy; <span id="year"></span> <span id="footName"></span></footer>
+
+  <script src="settings.js"></script>
+  <script>
+    const root = document.documentElement;
+    root.style.setProperty("--main", SETTINGS.color);
+    root.style.setProperty("--accent", SETTINGS.accent);
+    if (SETTINGS.footerColor) root.style.setProperty("--footer", SETTINGS.footerColor);
+    document.title = "New here? | " + SETTINGS.name;
+    (function () {
+      const logo = document.getElementById("logo");
+      const initials = SETTINGS.name.split(/\s+/).filter(w => w.toLowerCase() !== "the").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+      if (SETTINGS.logo) {
+        const img = document.createElement("img");
+        img.src = SETTINGS.logo; img.alt = SETTINGS.name + " logo";
+        img.addEventListener("error", () => { img.remove(); logo.textContent = initials; });
+        logo.append(img);
+      } else { logo.textContent = initials; }
+    })();
+    ["brand", "footName"].forEach(id => document.getElementById(id).textContent = SETTINGS.name);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function el(tag, props, ...kids) {
+      const n = document.createElement(tag);
+      Object.entries(props || {}).forEach(([k, v]) => { if (k === "class") n.className = v; else n.setAttribute(k, v); });
+      kids.flat().forEach(c => n.append(c));
+      return n;
+    }
+    const FORMAT = { "in-person": ["In person", ""], "online": ["Online", "online"], "both": ["In person and online", "both"] };
+    const mapsLink = SETTINGS.mapsUrl || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SETTINGS.address);
+
+    document.getElementById("welcome").textContent = NEW_HERE.welcome;
+    document.getElementById("svcList").append(...SERVICES.map(s => {
+      const f = FORMAT[s.format] || FORMAT["in-person"];
+      return el("li", {}, el("div", {}, el("strong", {}, s.day + ", " + s.time), el("small", {}, s.name)), el("span", { class: "badge " + f[1] }, f[0]));
+    }));
+    document.getElementById("addr").textContent = SETTINGS.address;
+    document.getElementById("mapBtn").href = mapsLink;
+    document.getElementById("dress").textContent = SETTINGS.expect.dress;
+    document.getElementById("parking").textContent = SETTINGS.expect.parking;
+    document.getElementById("kids").textContent = SETTINGS.expect.kids;
+
+    document.getElementById("flow").append(...NEW_HERE.flow.map(s => el("li", {}, el("div", {}, el("h3", {}, s.title), el("p", {}, s.text)))));
+    document.getElementById("faq").append(...NEW_HERE.faq.map(f => el("details", {}, el("summary", {}, f.q), el("p", {}, f.a))));
+
+    const act = document.getElementById("contactActions");
+    if (SETTINGS.whatsapp) act.append(el("a", { class: "cta", href: "https://wa.me/" + SETTINGS.whatsapp + "?text=" + encodeURIComponent("Hello, I am planning to visit " + SETTINGS.name + "."), target: "_blank", rel: "noopener" }, "Message us on WhatsApp"));
+    act.append(
+      el("a", { class: "btn-outline", href: "mailto:" + SETTINGS.email + "?subject=" + encodeURIComponent("I am planning to visit") }, "Send an email"),
+      el("a", { class: "btn-outline", href: "tel:" + SETTINGS.phone.replace(/\s+/g, "") }, "Call " + SETTINGS.phone)
+    );
+  </script>
+</body>
+</html>

@@ -4,42 +4,512 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>THE MASENO CHURCH</title>
-  <style>
-    body { font-family: poppins; sans-serif; margin: 0; text-align: center; }
-    header { background: #000b49; color: rgb(255, 217, 0); padding: 60px 20px; }
-    section { padding: 40px 20px; max-width: 700px; margin: auto; }
-    footer { background: #bd0000; padding: 20px; font-size: 14px; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1 class="church-name">THE MASENO CHURCH</h1>
-    <p>Welcome to Our Online Church Blessed family</p>
+
+  <!-- HEADER: logo, Home, Quick links, Notifications, New here -->
+  <header class="site-header">
+    <div class="hdr-left">
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
+      <a class="logo-link" href="#dashboard" aria-label="Home">
+        <span class="logo" id="logo"></span>
+        <span class="logo-name" id="logoName"></span>
+      </a>
+    </div>
+    <nav class="hdr-nav" aria-label="Header">
+      <a class="hdr-tab" id="homeTab" href="#dashboard">Home</a>
+      <div class="dd">
+        <button class="hdr-tab" id="qlBtn" type="button" aria-expanded="false" aria-controls="qlPanel">Quick links</button>
+        <div class="dd-panel" id="qlPanel" hidden></div>
+      </div>
+      <div class="dd">
+        <button class="hdr-tab" id="ntBtn" type="button" aria-expanded="false" aria-controls="ntPanel" aria-label="Notifications">Notifications<span class="count" id="ntCount" hidden></span></button>
+        <div class="dd-panel wide" id="ntPanel" hidden></div>
+      </div>
+      <a class="cta" href="new-here.html">New here?</a>
+    </nav>
   </header>
+  <div class="scrim" id="scrim"></div>
 
-  <section>
-    <h2>Service Times</h2>
-    <p>Sunday Services, 7:00 AM</p>
-  </section>
+  <div class="shell">
+    <!-- LEFT SIDE MENU -->
+    <aside class="sidebar" id="sidebar" aria-label="Site sections">
+      <nav class="side-nav" id="sideNav"></nav>
+    </aside>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Phone: SNR PASTOR( Blessed Deputy Archbishop Dennis Kere ) -07 2862 1907 </p>
-  </section>
+    <div class="content">
+      <main class="page">
 
-  <footer>
-    &copy; <span id="year"></span> <span class="church-name">MASENO CHURCH</span>
-  </footer>
+        <!-- ============ DASHBOARD ============ -->
+        <section class="view" id="view-dashboard">
+          <!-- Above the fold -->
+          <div class="hero">
+            <div>
+              <h2 id="heroName" tabindex="-1"></h2>
+              <p id="heroTag"></p>
+            </div>
+            <a class="cta" href="new-here.html">New here? Start here</a>
+          </div>
 
+          <div class="info-grid">
+            <article class="info" aria-labelledby="h-times">
+              <h3 id="h-times">Service times and formats</h3>
+              <ul class="svc" id="svcList"></ul>
+            </article>
+            <article class="info" aria-labelledby="h-find">
+              <h3 id="h-find">Find us</h3>
+              <p id="addr"></p>
+              <a class="btn-outline" id="mapBtn" target="_blank" rel="noopener">Open in Google Maps</a>
+            </article>
+            <article class="info" aria-labelledby="h-expect">
+              <h3 id="h-expect">What to expect</h3>
+              <p id="expect"></p>
+            </article>
+          </div>
+
+          <!-- Below the fold -->
+          <div class="section-head"><h3>Live sessions</h3><a class="link" href="#live">Open live player</a></div>
+          <div class="panel" id="dashLive"></div>
+
+          <div class="section-head"><h3>Latest teachings</h3><a class="link" href="#teachings">See all teachings</a></div>
+          <div class="grid" id="dashTeachings"></div>
+
+          <div class="section-head"><h3>Coming up</h3><a class="link" href="#calendar">Open calendar</a></div>
+          <div class="events" id="dashEvents"></div>
+        </section>
+
+        <!-- ============ LIVE SESSIONS ============ -->
+        <section class="view" id="view-live" hidden>
+          <h2 class="view-title" tabindex="-1">Live sessions</h2>
+          <p class="lead" id="liveNote"></p>
+          <div class="player-box" id="livePlayer"></div>
+          <div class="panel">
+            <h3>When we go live</h3>
+            <ul class="svc" id="liveSchedule"></ul>
+            <a class="btn-outline" id="liveLink" target="_blank" rel="noopener" hidden>Watch on our live channel</a>
+          </div>
+        </section>
+
+        <!-- ============ RECORDED TEACHINGS ============ -->
+        <section class="view" id="view-teachings" hidden>
+          <h2 class="view-title" tabindex="-1">Recorded teachings</h2>
+          <p class="lead">Sermons, Bible studies and youth sessions. Watch or listen any time.</p>
+          <div class="controls">
+            <div class="chips" id="teachChips"></div>
+            <input class="search" id="teachSearch" type="search" placeholder="Search by title, speaker or series" aria-label="Search recorded teachings">
+          </div>
+          <div class="grid" id="teachGrid"></div>
+        </section>
+
+        <!-- ============ WORSHIPS ============ -->
+        <section class="view" id="view-worships" hidden>
+          <h2 class="view-title" tabindex="-1">Worships</h2>
+          <p class="lead">Worship sets and praise sessions from our services.</p>
+          <div class="controls">
+            <span></span>
+            <input class="search" id="worshipSearch" type="search" placeholder="Search worship sessions" aria-label="Search worship sessions">
+          </div>
+          <div class="grid" id="worshipGrid"></div>
+        </section>
+
+        <!-- ============ PICTORIALS ============ -->
+        <section class="view" id="view-pictorials" hidden>
+          <h2 class="view-title" tabindex="-1">Pictorials</h2>
+          <p class="lead">Photos from our services, events and outreach.</p>
+          <div class="controls"><div class="chips" id="photoChips"></div></div>
+          <div class="grid" id="photoGrid"></div>
+        </section>
+
+        <!-- ============ CALENDAR OF NOTIFICATIONS ============ -->
+        <section class="view" id="view-calendar" hidden>
+          <h2 class="view-title" tabindex="-1">Calendar of notifications</h2>
+          <p class="lead">Upcoming services, events and announcements. Use "Add to Google Calendar" to get a reminder on your phone.</p>
+          <div class="controls">
+            <span></span>
+            <button class="chip" id="pastToggle" type="button" aria-pressed="false">Show past events</button>
+          </div>
+          <div class="events" id="eventList"></div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section class="view" id="view-contact" hidden>
+          <h2 class="view-title" tabindex="-1">Contact us</h2>
+          <p class="lead">We would love to hear from you.</p>
+          <div class="contact-box" id="contactBox"></div>
+        </section>
+
+      </main>
+      <footer class="site-foot">
+        <div class="foot-grid">
+          <div><h3 id="fName"></h3><p id="fTag"></p><p id="fPastor"></p></div>
+          <div><h3>Visit us</h3><p id="fAddr"></p><p id="fTimes"></p></div>
+          <div><h3>Connect</h3><ul id="fLinks"></ul></div>
+        </div>
+        <p class="foot-copy">&copy; <span id="year"></span> <span id="footName"></span>. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+
+  <dialog id="dlg" aria-labelledby="dlgTitle">
+    <div class="dlg-head">
+      <h3 id="dlgTitle"></h3>
+      <button class="close" id="dlgClose" type="button">Close</button>
+    </div>
+    <div class="dlg-body" id="dlgBody"></div>
+  </dialog>
+
+  <script src="settings.js"></script>
   <script>
-    // ✏️ EDIT YOUR CHURCH NAME HERE (only this line)
-    const CHURCH_NAME = "THE MASENO CHURCH";
-
-    document.title = CHURCH_NAME;
-    document.querySelectorAll(".church-name").forEach(function (el) {
-      el.textContent = CHURCH_NAME;
-    });
+    /* ---------- Theme and basic text ---------- */
+    const root = document.documentElement;
+    root.style.setProperty("--main", SETTINGS.color);
+    root.style.setProperty("--accent", SETTINGS.accent);
+    if (SETTINGS.footerColor) root.style.setProperty("--footer", SETTINGS.footerColor);
+    document.title = SETTINGS.name;
+    ["logoName", "heroName", "footName"].forEach(id => document.getElementById(id).textContent = SETTINGS.name);
+    document.getElementById("heroTag").textContent = SETTINGS.tagline;
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    /* ---------- Helpers ---------- */
+    function el(tag, props, ...kids) {
+      const n = document.createElement(tag);
+      Object.entries(props || {}).forEach(([k, v]) => {
+        if (k === "class") n.className = v;
+        else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+        else n.setAttribute(k, v);
+      });
+      kids.flat().forEach(c => n.append(c));
+      return n;
+    }
+    const fmtDate = d => d ? new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) : "";
+    const fmtTime = t => { if (!t) return ""; const [h, m] = t.split(":").map(Number); return ((h % 12) || 12) + ":" + String(m).padStart(2, "0") + " " + (h >= 12 ? "PM" : "AM"); };
+    const ytEmbed = (id, auto) => "https://www.youtube.com/embed/" + encodeURIComponent(id) + "?rel=0" + (auto ? "&autoplay=1" : "");
+    const mapsLink = () => SETTINGS.mapsUrl || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(SETTINGS.address);
+    const PLAY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+    const FORMAT = { "in-person": ["In person", ""], "online": ["Online", "online"], "both": ["In person and online", "both"] };
+    const pad = n => String(n).padStart(2, "0");
+    const localStamp = d => d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + "T" + pad(d.getHours()) + pad(d.getMinutes()) + "00";
+    const dayStamp = d => d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+
+    /* ---------- Sidebar and view switching ---------- */
+    const VIEWS = [
+      { id: "dashboard", label: "Dashboard" },
+      { id: "live", label: "Live Sessions" },
+      { id: "teachings", label: "Recorded Teachings" },
+      { id: "worships", label: "Worships" },
+      { id: "pictorials", label: "Pictorials" },
+      { id: "calendar", label: "Calendar of Notifications" },
+      { id: "contact", label: "Contact Us" }
+    ];
+    const sidebar = document.getElementById("sidebar");
+    const scrim = document.getElementById("scrim");
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("sideNav");
+    nav.append(...VIEWS.map(v => el("a", { href: "#" + v.id, "data-view": v.id }, v.label)));
+
+    function setMenu(open) {
+      sidebar.classList.toggle("open", open);
+      scrim.classList.toggle("show", open);
+      burger.setAttribute("aria-expanded", String(open));
+    }
+    burger.addEventListener("click", () => setMenu(!sidebar.classList.contains("open")));
+    scrim.addEventListener("click", () => setMenu(false));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+    let firstShow = true;
+    function show() {
+      let id = location.hash.slice(1);
+      if (!VIEWS.some(v => v.id === id)) id = "dashboard";
+      document.querySelectorAll(".view").forEach(s => { s.hidden = s.id !== "view-" + id; });
+      nav.querySelectorAll("a").forEach(a => {
+        if (a.dataset.view === id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+      });
+      setMenu(false);
+      if (window.closeDropdowns) window.closeDropdowns();
+      const home = document.getElementById("homeTab");
+      if (id === "dashboard") home.setAttribute("aria-current", "page"); else home.removeAttribute("aria-current");
+      window.scrollTo(0, 0);
+      if (!firstShow) { const h = document.querySelector("#view-" + id + " [tabindex='-1']"); if (h) h.focus({ preventScroll: true }); }
+      firstShow = false;
+    }
+    window.addEventListener("hashchange", show);
+
+    /* ---------- Dialog (player and photo viewer) ---------- */
+    const dlg = document.getElementById("dlg");
+    const dlgBody = document.getElementById("dlgBody");
+    document.getElementById("dlgClose").addEventListener("click", () => dlg.close());
+    dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("close", () => dlgBody.replaceChildren());
+
+    function openMedia(item) {
+      document.getElementById("dlgTitle").textContent = item.title;
+      dlgBody.replaceChildren();
+      if (item.youtube) {
+        dlgBody.append(el("div", { class: "player-box" }, el("iframe", { src: ytEmbed(item.youtube, true), title: item.title, allow: "autoplay; encrypted-media; picture-in-picture", allowfullscreen: "" })));
+      } else if (item.audio) {
+        dlgBody.append(el("audio", { controls: "", autoplay: "", src: item.audio }));
+      }
+      const meta = [item.speaker, fmtDate(item.date), item.series].filter(Boolean).join(", ");
+      if (meta) dlgBody.append(el("p", { class: "meta" }, meta));
+      if (item.description) dlgBody.append(el("p", {}, item.description));
+      dlg.showModal();
+    }
+    function openPhoto(p) {
+      document.getElementById("dlgTitle").textContent = p.caption || "Photo";
+      dlgBody.replaceChildren(el("img", { src: p.src, alt: p.caption || "" }));
+      dlg.showModal();
+    }
+
+    /* ---------- Card builders ---------- */
+    function mediaCard(item) {
+      const thumb = el("div", { class: "thumb" });
+      if (item.youtube) {
+        const img = el("img", { src: "https://i.ytimg.com/vi/" + encodeURIComponent(item.youtube) + "/hqdefault.jpg", alt: "", loading: "lazy" });
+        img.addEventListener("error", () => img.remove());
+        thumb.append(img);
+      }
+      const play = el("span", { class: "play" });
+      play.innerHTML = PLAY_SVG;
+      thumb.append(play);
+      const body = el("div", { class: "card-body" }, el("h3", {}, item.title), el("div", { class: "meta" }, [item.speaker, fmtDate(item.date)].filter(Boolean).join(", ")));
+      const tagText = item.category || item.series;
+      if (tagText) body.append(el("span", { class: "tag" }, tagText));
+      return el("button", { class: "card", type: "button", onclick: () => openMedia(item) }, thumb, body);
+    }
+    function photoCard(p) {
+      const img = el("img", { src: p.src, alt: p.caption || "", loading: "lazy" });
+      const btn = el("button", { class: "photo", type: "button", "aria-label": "Open photo: " + (p.caption || ""), onclick: () => openPhoto(p) }, img);
+      img.addEventListener("error", () => { img.remove(); btn.append(el("div", { class: "ph" }, p.caption || "Photo")); });
+      return btn;
+    }
+    function gcalLink(e) {
+      let dates;
+      if (e.time) {
+        const s = new Date(e.date + "T" + e.time + ":00");
+        dates = localStamp(s) + "/" + localStamp(new Date(s.getTime() + 2 * 3600000));
+      } else {
+        const s = new Date(e.date + "T00:00:00");
+        dates = dayStamp(s) + "/" + dayStamp(new Date(s.getTime() + 86400000));
+      }
+      return "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(e.title + " - " + SETTINGS.name) +
+        "&dates=" + dates + "&details=" + encodeURIComponent(e.details || "") + "&location=" + encodeURIComponent(e.place || SETTINGS.address);
+    }
+    function eventCard(e) {
+      const d = new Date(e.date + "T00:00:00");
+      const box = el("div", { class: "datebox" }, el("strong", {}, String(d.getDate())), el("span", {}, d.toLocaleDateString("en-GB", { month: "short" })));
+      const info = el("div", { class: "ev-info" }, el("h3", {}, e.title), el("div", { class: "meta" }, [fmtTime(e.time), e.place].filter(Boolean).join(", ")));
+      if (e.details) info.append(el("p", {}, e.details));
+      if (e.type) info.append(el("span", { class: "tag" }, e.type));
+      info.append(el("div", {}, el("a", { class: "link", href: gcalLink(e), target: "_blank", rel: "noopener" }, "Add to Google Calendar")));
+      return el("div", { class: "event" }, box, info);
+    }
+    const emptyBox = text => el("div", { class: "empty" }, text);
+    const today = (() => { const t = new Date(); t.setHours(0, 0, 0, 0); return t; })();
+    const upcoming = () => EVENTS.filter(e => new Date(e.date + "T00:00:00") >= today).sort((a, b) => a.date.localeCompare(b.date));
+    const newestFirst = list => [...list].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    const matches = (i, q) => !q || [i.title, i.speaker, i.series, i.category, i.description].join(" ").toLowerCase().includes(q.toLowerCase());
+
+    function chipRow(container, options, current, onPick) {
+      container.replaceChildren(...options.map(o => el("button", { class: "chip", type: "button", "aria-pressed": String(o === current), onclick: () => onPick(o) }, o)));
+    }
+
+    /* ---------- DASHBOARD: above-the-fold info ---------- */
+    (function () {
+      document.getElementById("svcList").append(...SERVICES.map(s => {
+        const f = FORMAT[s.format] || FORMAT["in-person"];
+        return el("li", {}, el("div", {}, el("strong", {}, s.day + ", " + s.time), el("small", {}, s.name)), el("span", { class: "badge " + f[1] }, f[0]));
+      }));
+      document.getElementById("addr").textContent = SETTINGS.address;
+      document.getElementById("mapBtn").href = mapsLink();
+      document.getElementById("expect").textContent = [SETTINGS.expect.dress, SETTINGS.expect.parking, SETTINGS.expect.kids].filter(Boolean).join(" ");
+
+      const nextOnline = SERVICES.find(s => s.format === "online" || s.format === "both");
+      document.getElementById("dashLive").append(
+        el("p", {}, SETTINGS.live.note),
+        nextOnline ? el("p", { class: "meta" }, "Next online service: " + nextOnline.day + ", " + nextOnline.time + " (" + nextOnline.name + ")") : ""
+      );
+
+      const latest = newestFirst(TEACHINGS).slice(0, 3);
+      document.getElementById("dashTeachings").replaceChildren(...(latest.length ? latest.map(mediaCard) : [emptyBox("No teachings added yet.")]));
+
+      const next = upcoming().slice(0, 3);
+      document.getElementById("dashEvents").replaceChildren(...(next.length ? next.map(eventCard) : [emptyBox("No upcoming events. Check back soon.")]));
+    })();
+
+    /* ---------- LIVE view ---------- */
+    (function () {
+      const box = document.getElementById("livePlayer");
+      let src = "";
+      if (SETTINGS.live.videoId) src = ytEmbed(SETTINGS.live.videoId, false);
+      else if (SETTINGS.live.channelId) src = "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(SETTINGS.live.channelId);
+      if (src) box.append(el("iframe", { src, title: "Live service", allow: "accelerometer; autoplay; encrypted-media; picture-in-picture", allowfullscreen: "" }));
+      else box.append(el("div", { class: "player-empty" }, el("div", {}, el("strong", {}, "No live session right now"), "The player appears here when we go live.")));
+      document.getElementById("liveNote").textContent = SETTINGS.live.note;
+      const online = SERVICES.filter(s => s.format === "online" || s.format === "both");
+      document.getElementById("liveSchedule").append(...(online.length ? online : SERVICES).map(s => {
+        const f = FORMAT[s.format] || FORMAT["in-person"];
+        return el("li", {}, el("div", {}, el("strong", {}, s.day + ", " + s.time), el("small", {}, s.name)), el("span", { class: "badge " + f[1] }, f[0]));
+      }));
+      if (SETTINGS.live.link) { const a = document.getElementById("liveLink"); a.href = SETTINGS.live.link; a.hidden = false; }
+    })();
+
+    /* ---------- RECORDED TEACHINGS ---------- */
+    (function () {
+      const cats = ["All", ...new Set(TEACHINGS.map(t => t.category).filter(Boolean))];
+      const state = { cat: "All", q: "" };
+      const chips = document.getElementById("teachChips");
+      const grid = document.getElementById("teachGrid");
+      function render() {
+        chipRow(chips, cats, state.cat, c => { state.cat = c; render(); });
+        const items = newestFirst(TEACHINGS).filter(t => (state.cat === "All" || t.category === state.cat) && matches(t, state.q));
+        grid.replaceChildren(...(items.length ? items.map(mediaCard) : [emptyBox(state.q ? "Nothing matches your search. Try a different word." : "No teachings here yet. Add them in settings.js.")]));
+      }
+      document.getElementById("teachSearch").addEventListener("input", e => { state.q = e.target.value.trim(); render(); });
+      render();
+    })();
+
+    /* ---------- WORSHIPS ---------- */
+    (function () {
+      const grid = document.getElementById("worshipGrid");
+      let q = "";
+      function render() {
+        const items = newestFirst(WORSHIPS).filter(w => matches(w, q));
+        grid.replaceChildren(...(items.length ? items.map(mediaCard) : [emptyBox(q ? "Nothing matches your search. Try a different word." : "No worship sessions yet. Add them in settings.js.")]));
+      }
+      document.getElementById("worshipSearch").addEventListener("input", e => { q = e.target.value.trim(); render(); });
+      render();
+    })();
+
+    /* ---------- PICTORIALS ---------- */
+    (function () {
+      const albums = ["All", ...new Set(PHOTOS.map(p => p.album).filter(Boolean))];
+      let album = "All";
+      const chips = document.getElementById("photoChips");
+      const grid = document.getElementById("photoGrid");
+      function render() {
+        chipRow(chips, albums, album, a => { album = a; render(); });
+        const items = PHOTOS.filter(p => album === "All" || p.album === album);
+        grid.replaceChildren(...(items.length ? items.map(photoCard) : [emptyBox("No photos here yet. Add them in settings.js.")]));
+      }
+      render();
+    })();
+
+    /* ---------- CALENDAR ---------- */
+    (function () {
+      const list = document.getElementById("eventList");
+      const toggle = document.getElementById("pastToggle");
+      let past = false;
+      function render() {
+        toggle.setAttribute("aria-pressed", String(past));
+        toggle.textContent = past ? "Hide past events" : "Show past events";
+        const items = (past ? [...EVENTS].sort((a, b) => b.date.localeCompare(a.date)) : upcoming());
+        list.replaceChildren(...(items.length ? items.map(eventCard) : [emptyBox("No upcoming events. Check back soon.")]));
+      }
+      toggle.addEventListener("click", () => { past = !past; render(); });
+      render();
+    })();
+
+    /* ---------- CONTACT ---------- */
+    (function () {
+      const b = document.getElementById("contactBox");
+      b.append(
+        SETTINGS.pastor ? el("div", {}, SETTINGS.pastor) : "",
+        el("div", {}, "Phone: ", el("a", { href: "tel:" + SETTINGS.phone.replace(/\s+/g, "") }, SETTINGS.phone)),
+        SETTINGS.whatsapp ? el("div", {}, "WhatsApp: ", el("a", { href: "https://wa.me/" + SETTINGS.whatsapp, target: "_blank", rel: "noopener" }, "Message us on WhatsApp")) : "",
+        el("div", {}, "Email: ", el("a", { href: "mailto:" + SETTINGS.email }, SETTINGS.email)),
+        el("div", {}, "Address: " + SETTINGS.address),
+        el("div", {}, el("a", { class: "btn-outline", href: mapsLink(), target: "_blank", rel: "noopener" }, "Open in Google Maps"))
+      );
+    })();
+
+    /* ---------- Header: logo, quick links, notifications ---------- */
+    (function () {
+      const logo = document.getElementById("logo");
+      const initials = SETTINGS.name.split(/\s+/).filter(w => w.toLowerCase() !== "the").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+      if (SETTINGS.logo) {
+        const img = el("img", { src: SETTINGS.logo, alt: SETTINGS.name + " logo" });
+        img.addEventListener("error", () => { img.remove(); logo.textContent = initials; });
+        logo.append(img);
+      } else { logo.textContent = initials; }
+
+      document.getElementById("qlPanel").append(...QUICK_LINKS.map(l => {
+        const external = /^(https?:|mailto:|tel:)/.test(l.url);
+        const a = el("a", { class: "dd-item", href: l.url }, l.label);
+        if (/^https?:/.test(l.url)) { a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener"); }
+        return a;
+      }));
+
+      function buildNotifications() {
+        const items = [];
+        NOTICES.forEach(n => {
+          if (n.until && new Date(n.until + "T00:00:00") < today) return;
+          items.push({ id: "n:" + n.title + (n.date || ""), title: n.title, text: n.text || "" });
+        });
+        const limit = new Date(today.getTime() + (SETTINGS.notifyDays || 14) * 86400000);
+        upcoming().filter(e => new Date(e.date + "T00:00:00") <= limit).forEach(e => {
+          items.push({ id: "e:" + e.title + e.date, title: e.title, text: [fmtDate(e.date), fmtTime(e.time), e.place].filter(Boolean).join(", ") });
+        });
+        return items;
+      }
+      const items = buildNotifications();
+      const getSeen = () => { try { return JSON.parse(localStorage.getItem("seenNotifs") || "[]"); } catch (e) { return []; } };
+      const setSeen = ids => { try { localStorage.setItem("seenNotifs", JSON.stringify(ids)); } catch (e) {} };
+      const count = document.getElementById("ntCount");
+      function updateBadge() {
+        const seen = getSeen();
+        const unseen = items.filter(i => !seen.includes(i.id)).length;
+        count.hidden = unseen === 0;
+        count.textContent = unseen;
+      }
+      const ntPanel = document.getElementById("ntPanel");
+      ntPanel.append(...(items.length
+        ? items.map(i => el("div", { class: "nt-item" }, el("strong", {}, i.title), el("span", {}, i.text)))
+        : [el("div", { class: "nt-item" }, el("span", {}, "No new notifications."))]));
+      ntPanel.append(el("div", { class: "nt-foot" }, el("a", { class: "link", href: "#calendar" }, "Open the full calendar")));
+      updateBadge();
+
+      const dds = [
+        { btn: document.getElementById("qlBtn"), panel: document.getElementById("qlPanel") },
+        { btn: document.getElementById("ntBtn"), panel: ntPanel, onOpen: () => { setSeen(items.map(i => i.id)); updateBadge(); } }
+      ];
+      window.closeDropdowns = function (except) {
+        dds.forEach(d => { if (d !== except) { d.panel.hidden = true; d.btn.setAttribute("aria-expanded", "false"); } });
+      };
+      dds.forEach(d => d.btn.addEventListener("click", e => {
+        e.stopPropagation();
+        const opening = d.panel.hidden;
+        window.closeDropdowns(d);
+        d.panel.hidden = !opening;
+        d.btn.setAttribute("aria-expanded", String(opening));
+        if (opening && d.onOpen) d.onOpen();
+      }));
+      document.addEventListener("click", e => { if (!e.target.closest(".dd")) window.closeDropdowns(); });
+      document.addEventListener("keydown", e => { if (e.key === "Escape") window.closeDropdowns(); });
+    })();
+
+    /* ---------- Footer ---------- */
+    (function () {
+      document.getElementById("fName").textContent = SETTINGS.name;
+      document.getElementById("fTag").textContent = SETTINGS.tagline;
+      document.getElementById("fPastor").textContent = SETTINGS.pastor || "";
+      document.getElementById("fAddr").textContent = SETTINGS.address;
+      document.getElementById("fTimes").textContent = SERVICES.map(s => s.day + " " + s.time).join(", ");
+      const ul = document.getElementById("fLinks");
+      [{ label: "Call " + SETTINGS.phone, url: "tel:" + SETTINGS.phone.replace(/\s+/g, "") },
+       { label: SETTINGS.email, url: "mailto:" + SETTINGS.email },
+       ...SOCIALS].forEach(l => {
+        const li = document.createElement("li"), a = document.createElement("a");
+        a.href = l.url; a.textContent = l.label;
+        if (/^https?:/.test(l.url)) { a.target = "_blank"; a.rel = "noopener"; }
+        li.append(a); ul.append(li);
+      });
+    })();
+
+    show();
   </script>
 </body>
 </html>
