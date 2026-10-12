@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>New here? | THE MASENO CHURCH</title>
+  <title>New here? | THE MASENO MAIN ALTAR</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 
   <div class="nh-top">
     <div class="row">
-      <a class="brand logo-link" href="index.html" style="color:#fff"><span class="logo" id="logo"></span><span id="brand"></span></a>
+      <a class="brand logo-link" href="index.html" style="color:#fff"><span class="logo" id="logo"></span><span class="brand-text"><span class="brand-small" id="brandMin"></span><span class="brand-big" id="brand"></span></span></a>
       <a href="index.html#dashboard">Home</a>
     </div>
   </div>
@@ -77,6 +77,7 @@
         logo.append(img);
       } else { logo.textContent = initials; }
     })();
+    document.getElementById("brandMin").textContent = SETTINGS.ministry || "";
     ["brand", "footName"].forEach(id => document.getElementById(id).textContent = SETTINGS.name);
     document.getElementById("year").textContent = new Date().getFullYear();
 

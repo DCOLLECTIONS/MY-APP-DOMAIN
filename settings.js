@@ -5,7 +5,8 @@
    ========================================================================= */
 
 const SETTINGS = {
-  name: "THE MASENO CHURCH",
+  ministry: "MINISTRY OF REPENTANCE AND HOLINESS",  // small white line above the name
+  name: "THE MASENO MAIN ALTAR",                           // large yellow name
   tagline: "Welcome to Our Online Church Blessed family",
   color: "#000b49",   // main colour (sidebar, banner, buttons)
   accent: "#ffd900",  // gold: "New here?" button and highlights
