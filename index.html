@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>THE MASENO MAIN ALTAR | MINISTRY OF REPENTANCE AND HOLINESS</title>
+  <title>THE MASENO CHURCH</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
       <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="sidebar">Menu</button>
       <a class="logo-link" href="#dashboard" aria-label="Home">
         <span class="logo" id="logo"></span>
-        <span class="brand-text"><span class="brand-small" id="logoMinistry"></span><span class="brand-big" id="logoName"></span></span>
+        <span class="logo-name" id="logoName"></span>
       </a>
     </div>
     <nav class="hdr-nav" aria-label="Header">
@@ -49,7 +49,6 @@
           <!-- Above the fold -->
           <div class="hero">
             <div>
-              <p class="hero-small" id="heroMinistry"></p>
               <h2 id="heroName" tabindex="-1"></h2>
               <p id="heroTag"></p>
             </div>
@@ -146,7 +145,7 @@
       </main>
       <footer class="site-foot">
         <div class="foot-grid">
-          <div><p class="brand-small" id="fMinistry"></p><h3 id="fName"></h3><p id="fTag"></p><p id="fPastor"></p></div>
+          <div><h3 id="fName"></h3><p id="fTag"></p><p id="fPastor"></p></div>
           <div><h3>Visit us</h3><p id="fAddr"></p><p id="fTimes"></p></div>
           <div><h3>Connect</h3><ul id="fLinks"></ul></div>
         </div>
@@ -170,8 +169,7 @@
     root.style.setProperty("--main", SETTINGS.color);
     root.style.setProperty("--accent", SETTINGS.accent);
     if (SETTINGS.footerColor) root.style.setProperty("--footer", SETTINGS.footerColor);
-    document.title = SETTINGS.name + (SETTINGS.ministry ? " | " + SETTINGS.ministry : "");
-    ["logoMinistry", "heroMinistry", "fMinistry"].forEach(id => document.getElementById(id).textContent = SETTINGS.ministry || "");
+    document.title = SETTINGS.name;
     ["logoName", "heroName", "footName"].forEach(id => document.getElementById(id).textContent = SETTINGS.name);
     document.getElementById("heroTag").textContent = SETTINGS.tagline;
     document.getElementById("year").textContent = new Date().getFullYear();

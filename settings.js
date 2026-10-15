@@ -8,26 +8,26 @@ const SETTINGS = {
   ministry: "MINISTRY OF REPENTANCE AND HOLINESS",  // small white line above the name
   name: "THE MASENO MAIN ALTAR",                           // large yellow name
   tagline: "Welcome to Our Online Church Blessed family",
-  color: "#000b49",   // main colour (sidebar, banner, buttons)
-  accent: "#ffd900",  // gold: "New here?" button and highlights
+  color: "#010b42",   // main colour (sidebar, banner, buttons)
+  accent: "#ffffff",  // gold: "New here?" button and highlights
   footerColor: "#bd0000", // footer background
 
   logo: "logo.png",   // your church logo: put the image file in the same folder as index.html
   notifyDays: 14,     // events starting within this many days show in the Notifications bell
 
   pastor: "Snr Pastor: Blessed Deputy Archbishop Dennis Kere",
-  phone: "07 2862 1907",
+  phone: "+2547 2862 1907",
   whatsapp: "",       // e.g. "2547XXXXXXXX" (country code, no + or spaces). Optional.
-  email: "info@mychurch.com",
+  email: "masenomainaltar@gmail.com",
 
   address: "Maseno, Kenya",   // replace with your full street address
-  mapsUrl: "",        // optional: paste a Google Maps share link. Leave empty to build one from the address.
+  mapsUrl: "https://maps.app.goo.gl/B8mQDNyXRT4RvuRv7",        // optional: paste a Google Maps share link. Leave empty to build one from the address.
 
   /* WHAT TO EXPECT (shown at the top of the homepage: keep each to one sentence) */
   expect: {
-    dress: "Come as you are: most people wear smart casual, and you will see everything from jeans to suits.",
-    parking: "Free parking is available on the church grounds, and our team in bright vests will guide you to a space.",
-    kids: "Children aged 3 to 12 have their own class during the main service, so bring them to the Kids Check-in desk by the main entrance."
+    dress: "Come as you are: just to pour out your heart to the Lord and soak deeply in worship and prayer.",
+    parking: "Free parking is available on the church grounds, and our ushering team will guide you to a space.",
+    kids: "Children aged 3 to 12 have their own sunday school sessions during the main service, so bring them to the Kids Check-in."
   },
 
   /* LIVE SESSIONS
@@ -37,12 +37,12 @@ const SETTINGS = {
   live: {
     channelId: "",
     videoId: "",
-    link: "",         // optional: link to your YouTube or Facebook page
-    note: "We stream our main services live. Join us at service time."
+    link: "https://youtube.com/@themasenomainaltarchurch?si=jatp_qO6LFi3z5_f",         // optional: link to your YouTube or Facebook page
+    note: "We stream some of our services live. Join us at service time."
   }
 };
 
-/* SERVICE TIMES & FORMATS
+/* SERVICE TIMES
    format: "in-person", "online" or "both" */
 const SERVICES = [
   { day: "Sunday", time: "7:00 AM", name: "Sunday Services", format: "both" }
@@ -52,9 +52,9 @@ const SERVICES = [
    date: "YYYY-MM-DD"   time (optional): "HH:MM" in 24-hour format
    type examples: "Service", "Youth", "Outreach", "Announcement" */
 const EVENTS = [
-  { date: "2026-10-18", time: "09:00", title: "Harvest Thanksgiving Sunday", place: "Main sanctuary", type: "Service", details: "Bring your thanksgiving offering. Lunch will be served after service." },
-  { date: "2026-10-24", time: "10:00", title: "Youth Retreat Registration", place: "Church hall", type: "Youth", details: "Register at the youth desk before the retreat." },
-  { date: "2026-11-01", title: "Community Outreach Day", place: "Meet at the church gate", type: "Outreach", details: "Wear comfortable clothes. Transport is provided." }
+  { date: "2026-10-18", time: "09:00", title: "Thanksgiving Sunday", place: "Main Altar", type: "Service", details: "Join us for a special moment of thanksgiving and worship." },
+  { date: "2026-10-24", time: "10:00", title: "Youth Fellowship", place: "Church And Virtual", type: "Youth", details: "Power-packed brotherly fellowship for spiritual nourishment" },
+  { date: "2026-11-01", title: "Community Outreach Day", place: "Meet at the church gate", type: "Evangelism", details: "A spirited outreach event to share the love of Christ and win souls" }
 ];
 
 /* RECORDED TEACHINGS (sermons, Bible studies, youth sessions...)
@@ -62,14 +62,14 @@ const EVENTS = [
    audio:   OR a link to an .mp3 file instead of a YouTube video
    category: used for the filter buttons (Sermon, Bible Study, Youth...) */
 const TEACHINGS = [
-  { title: "Sample sermon: replace me", speaker: "Pastor Name", date: "2026-10-11", category: "Sermon", series: "Faith", youtube: "VIDEO_ID_1", audio: "", description: "Short summary of the message." },
-  { title: "Sample Bible study", speaker: "Teacher Name", date: "2026-10-07", category: "Bible Study", series: "Book of John", youtube: "VIDEO_ID_2", audio: "", description: "" },
-  { title: "Sample youth session", speaker: "Youth Leader", date: "2026-09-26", category: "Youth", series: "", youtube: "VIDEO_ID_3", audio: "", description: "" }
+  { title: "Teachings By The Mightiest Prophet of God: replace me", speaker: "Prophet Dr. David Owuor", date: "2026-10-11", category: "Sermon", series: "Holiness", youtube: "VIDEO_ID_1", audio: "", description: "Short summary of the message." },
+  { title: " Bible study", speaker: "DAB Dennis Kere", date: "2026-10-07", category: "Bible Study", series: "The People of The Way", youtube: "VIDEO_ID_2", audio: "", description: "" },
+  { title: "Special Fellowship", speaker: "DAB Dennis Kere", date: "2026-09-26", category: "The Rupture Church", series: "", youtube: "VIDEO_ID_3", audio: "", description: "" }
 ];
 
 /* WORSHIPS (worship sets, choir songs, praise sessions) */
 const WORSHIPS = [
-  { title: "Sample worship set: replace me", speaker: "Worship Team", date: "2026-10-11", series: "Sunday Worship", youtube: "VIDEO_ID_4", audio: "", description: "" }
+  { title: "Worship Series: replace me", speaker: "Worship Team", date: "2026-10-11", series: "Sunday Worship Hours", youtube: "VIDEO_ID_4", audio: "", description: "" }
 ];
 
 /* PICTORIALS (photos)
@@ -83,19 +83,17 @@ const PHOTOS = [
 
 /* NEW HERE PAGE (new-here.html) */
 const NEW_HERE = {
-  welcome: "We are so glad you are thinking of visiting. You do not need to prepare anything. Here is what your first Sunday looks like.",
+  welcome: "We are so glad to have you join us today. We are looking foward to have endless fellowships with you!. Here is what your first Sunday looks like.",
   flow: [
-    { title: "Arrive and park", text: "Our parking team will guide you. Plan to arrive 10 minutes early." },
-    { title: "Meet the welcome team", text: "Look for the friendly faces at the main entrance. They will answer questions and help you find a seat." },
-    { title: "Drop off the kids", text: "Children aged 3 to 12 go to Kids Church. Check them in at the desk by the entrance." },
-    { title: "Worship and message", text: "A time of singing, prayer and a message from the Bible. The whole service lasts about two hours." },
-    { title: "Stay for tea", text: "Join us after service for tea and a chat. We would love to meet you." }
+    { title: "Arrival to the church ", text: "Our ushering team will guide you. Arrive early to catch up with every moment." },
+    { title: "Kids Sunday School Sessions", text: "Children aged 3 to 12 go to their specific church session. Check them in at the desk by the entrance." },
+    { title: "Worship and The Word", text: "A time of worship, prayer and bible teachings. The whole service ends normally by 1pm." },
+    { title: "Stay for Optional After Service Meetings", text: "Join any departments for service reflections and team building sessions. We would love to meet you." }
   ],
   faq: [
-    { q: "What should I wear?", a: "Wear whatever you are comfortable in. Smart casual is common." },
-    { q: "Do I have to give an offering?", a: "No. Offerings are for members and friends who want to give. Visitors are never expected to." },
+    { q: "What should I wear?", a: "Come as you are." },
     { q: "Can I join online instead?", a: "Yes. Our main Sunday service is streamed live, and recordings are on the Recorded Teachings page." },
-    { q: "Is there anything for my children?", a: "Yes. Kids Church runs during the main service for ages 3 to 12." }
+    { q: "Is there anything for my children?", a: "Yes. Kids Sessions runs during the main service" }
   ]
 };
 
@@ -110,10 +108,10 @@ const QUICK_LINKS = [
   { label: "Calendar of notifications", url: "#calendar" },
   { label: "New here? Plan your visit", url: "new-here.html" },
   { label: "Give online", url: "https://example.com/give" },
-  { label: "Prayer request", url: "mailto:info@mychurch.com?subject=Prayer%20request" },
-  { label: "WhatsApp us", url: "https://wa.me/2547XXXXXXXX" },
-  { label: "YouTube channel", url: "https://youtube.com/@yourchannel" },
-  { label: "Facebook page", url: "https://facebook.com/yourpage" }
+  { label: "Prayer request", url: "mailto:masenomainaltar@gmail.com?subject=Prayer%20request" },
+  { label: "WhatsApp us", url: "https://wa.me/254728621907" },
+  { label: "YouTube channel", url: "https://youtube.com/@themasenomainaltarchurch?si=jatp_qO6LFi3z5_f" },
+  { label: "Tiktok page", url: "https://tiktok.com/@tiktok.com/@maseno.mainaltar" }
 ];
 
 /* NOTIFICATIONS (header bell)
@@ -126,6 +124,6 @@ const NOTICES = [
 
 /* SOCIAL LINKS (shown in the footer) */
 const SOCIALS = [
-  { label: "YouTube", url: "https://youtube.com/@yourchannel" },
-  { label: "Facebook", url: "https://facebook.com/yourpage" }
+  { label: "YouTube", url: "https://youtube.com/@themasenomainaltarchurch?si=jatp_qO6LFi3z5_f" },
+  { label: "Tiktok", url: "https://tiktok.com/@tiktok.com/@maseno.mainaltar" }
 ];
